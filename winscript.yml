@@ -13,3 +13,5 @@
 
     - name: Execute Script
       ansible.builtin.script: bkp_events.bat "{{ log_location }}"
+      register: script_out
+    - debug: var=script_out.stdout.split('System').1
