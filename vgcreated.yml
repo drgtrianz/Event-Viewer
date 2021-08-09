@@ -1,0 +1,54 @@
+---
+- name: playbook for simple 1 GB partition
+  hosts: ip-172-31-25-160.eu-west-2.compute.internal
+  tasks:
+    - name: create partition
+      parted:
+        device: /dev/xvdb
+        number: 1
+        flags: [ lvm ]
+        state: present
+        part_end: 3GB
+    
+ #   - name: create partition
+ #     parted:
+ #       device: /dev/xvdc
+ #       number: 1
+ #       flags: [ lvm ]
+ #       state: present
+ #       part_end: 3GB
+
+    - name: Install lvm2 dependency
+      package:
+        name: lvm2
+        state: present
+
+    - name: task for creating volume group
+      lvg:
+          vg: samplevg
+          pvs: /dev/xvdb
+ 
+    - name: task for creating logical volume
+      lvol:
+          vg: samplevg
+          lv:  samplelv
+          size: 2g
+          force: yes
+
+    - name: Create directory data1 if does not exist
+      file:
+        path: /data1
+        state: directory
+        mode: '0755'
+
+    - name: format the xfs filesystem
+      filesystem:
+        fstype: xfs
+        dev: /dev/samplevg/samplelv
+
+    - name: mount the lv on /data1
+      mount:
+        path: /data1
+        src: /dev/samplevg/samplelv
+        fstype: xfs
+        state: mounted
