@@ -6,7 +6,7 @@
     
   
   tasks:
-    - name: create the Install directory in C drive
+    - name: create the Install directory in D drive
       win_file:
         path: "{{ log_location }}"
         state: directory
