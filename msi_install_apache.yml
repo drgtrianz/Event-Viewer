@@ -1,0 +1,68 @@
+---
+- name: Installing Apache MSI 
+  hosts: windows
+  vars:
+    work: 'C:/Install'
+    log_location: 'C:/log'
+    msi_agent: 'Apache'
+    link: 'https://archive.apache.org/dist/httpd/binaries/win32'
+    binary: 'httpd-2.2.25-win32-x86-no_ssl.msi'
+    install_status: 'C:/Install/msi_installed.txt'
+  
+  tasks:
+    - name: create the Install directory in C drive
+      win_file:
+        path: "{{ work }}/{{ msi_agent }}"
+        state: directory
+
+    - name: Download the MSI
+      win_get_url:
+        url: "{{ link }}/{{ binary }}"
+        dest: "{{ work }}/{{ msi_agent }}"
+
+    - name: find the msi file in directory.
+      win_find:
+        paths: "{{ work }}/{{ msi_agent }}"
+        patterns: ['*.bat', '*.msi']
+        file_type: file
+        recurse: true
+      register: reg_find_msi
+
+    - name: Print the msi file path 
+      debug:
+        msg: "{{ reg_find_msi.files[0].path }}"
+
+    - name: install the MSI Agent on win server
+      win_command: "powershell.exe {{ reg_find_msi.files[0].path }}"
+
+#      win_package:
+#        path: "{{ reg_find_msi.files[0].path }}"
+#        state: present
+#        product_id: none
+#        arguments: /S
+
+#    - win_service:
+#        name: besclient
+#        state: stopped 
+     
+    ## create the log file when installtion completed 
+    - name: create the msi_installed txt file. 
+      win_lineinfile:
+        path: "{{ install_status }}"
+        line: "{{ msi_agent }} is installed and Please don't delete this file\n"
+        create: true
+        state: present
+
+    ## cleanup the file from working directory on servers
+    - name: Cleanup the file from "{{ 'work' }}" directory.
+      win_file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "{{ work }}/{{ msi_agent }}/{{ binary }}"
+        - "{{ work }}/{{ msi_agent }}/"
+    
+
+
+     
+  
