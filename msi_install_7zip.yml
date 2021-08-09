@@ -1,6 +1,6 @@
 ---
 - name: Installing MSI 
-  hosts: windows
+  hosts: all
   vars:
     work: 'C:/Install'
     log_location: 'C:/log'
