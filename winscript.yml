@@ -1,0 +1,16 @@
+---
+- name: Event Viewer log backup 
+  hosts: all
+  vars:
+    log_location: 'D:/backup/'
+    
+  
+  tasks:
+    - name: create the Install directory in C drive
+      win_file:
+        path: "{{ log_location }}"
+        state: directory
+
+    - name: Execute Script
+      ansible.builtin.script: /var/lib/awx/projects/_96__drg_event_viewer_win/bkp_events.bat "{{ log_location }}"
+
