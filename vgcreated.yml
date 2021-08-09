@@ -1,5 +1,5 @@
 ---
-- name: playbook for simple 1 GB partition
+- name: playbook for simple 3 GB partition
   hosts: ip-172-31-25-160.eu-west-2.compute.internal
   tasks:
     - name: create partition
