@@ -1,3 +1,4 @@
+@echo off
 rem Script starts here
 rem Timestamp Generator
 
@@ -21,5 +22,7 @@ set timestamp=%cur_yyyy%%cur_mm%%cur_dd%-%cur_hh%%cur_nn%%cur_ss%%cur_ms%
 wevtutil epl System %BACKUP_PATH%\system_%timestamp%.evtx
 wevtutil epl Application %BACKUP_PATH%\application_%timestamp%.evtx
 wevtutil epl Security %BACKUP_PATH%\security_%timestamp%.evtx
+
+echo "Backup files created successfully at path " %BACKUP_PATH% " With Time Stamp " %timestamp%
 
 rem End of Script
