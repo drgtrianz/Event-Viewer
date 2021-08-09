@@ -1,8 +1,8 @@
 ---
 - name: Event Viewer log backup 
   hosts: all
-  vars:
-    log_location: 'D:/backup/'
+#  vars:
+#    log_location: 'D:/backup/'
     
   
   tasks:
