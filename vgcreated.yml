@@ -1,6 +1,6 @@
 ---
 - name: playbook for simple 3 GB partition
-  hosts: ip-172-31-25-160.eu-west-2.compute.internal
+  hosts: 18.170.74.197
   tasks:
     - name: create partition
       parted:
