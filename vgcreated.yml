@@ -26,7 +26,7 @@
     - name: task for creating volume group
       lvg:
           vg: samplevg
-          pvs: /dev/xvdb
+          pvs: /dev/xvdb1
  
     - name: task for creating logical volume
       lvol:
