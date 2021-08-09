@@ -1,0 +1,18 @@
+---
+- hosts: node4.example.com
+  vars_prompt:
+    - name: "extend_vg_name"
+      prompt: "Name of the Volume Group"
+      private: no
+
+    - name: "extend_lv_name"
+      prompt: "Name of the logical Volume"
+      private: no
+
+    - name: "require_lv_size"
+      prompt: "Size of Logical volume to be Extend"
+      private: no
+
+  tasks:
+    - name: extending existing filesystem
+      command: "lvextend -L+{{ require_lv_size }} /dev/{{ extend_vg_name }}/{{ extend_lv_name }} -r"
