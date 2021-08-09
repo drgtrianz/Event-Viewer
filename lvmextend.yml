@@ -1,10 +1,10 @@
 ---
 - hosts: 18.170.74.197
 
-  vars:
-    extend_vg_name: 'samplevg'
-    extend_lv_name: 'samplelv'
-    require_lv_size: '1000M'
+#  vars:
+#    extend_vg_name: 'samplevg'
+#    extend_lv_name: 'samplelv'
+#    require_lv_size: '1000M'
   
  
   tasks:
