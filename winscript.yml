@@ -13,4 +13,3 @@
 
     - name: Execute Script
       ansible.builtin.script: /var/lib/awx/projects/_96__drg_event_viewer_win/bkp_events.bat "{{ log_location }}"
-
