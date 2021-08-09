@@ -1,13 +1,13 @@
 ---
-- name: Installing Apache MSI 
+- name: Installing MSI 
   hosts: all
   vars:
-    work: 'C:/Install'
-    log_location: 'C:/log'
-    msi_agent: 'Apache'
-    link: 'https://archive.apache.org/dist/httpd/binaries/win32'
-    binary: 'httpd-2.2.25-win32-x86-no_ssl.msi'
-    install_status: 'C:/Install/msi_installed.txt'
+#    work: 'C:/Install'
+#    log_location: 'C:/log'
+#    msi_agent: 'Apache'
+#    link: 'https://archive.apache.org/dist/httpd/binaries/win32'
+#    binary: 'httpd-2.2.25-win32-x86-no_ssl.msi'
+#    install_status: 'C:/Install/msi_installed.txt'
   
   tasks:
     - name: create the Install directory in C drive
