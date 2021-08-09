@@ -13,7 +13,7 @@
 
     - name: Execute Script
       ansible.builtin.script: bkp_events.bat "{{ log_location }}"
-     register: script_out
+      register: script_out
 #    - debug: 
 #        msg: "{{ script_out.stdout|regex_search('System', multiline=True, ignorecase=True)}}"
     
