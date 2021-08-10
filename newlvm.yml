@@ -1,5 +1,5 @@
 ---
-#- hosts: 
+- hosts: 18.135.102.55
   remote_user: sbansible
   become: True
   become_method: sudo
