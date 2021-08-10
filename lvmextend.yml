@@ -1,5 +1,10 @@
 ---
-- hosts: 18.170.74.197
+- hosts: 18.135.102.55
+  remote_user: sbansible
+  become: True
+  become_method: sudo
+  become_user: root
+
 
 #  vars:
 #    extend_vg_name: 'samplevg'
