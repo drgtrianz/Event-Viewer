@@ -1,0 +1,10 @@
+---
+- name: Service Start Stop and Restart logic
+  service:
+    name: "{{service_name}}"
+    state: "{{action_type}}"
+  become: true
+  register: service_output
+  
+- debug: var=service_output
+...
