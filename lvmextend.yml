@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  remote_user: sbansible
+  remote_user: ansible
   become: True
   become_method: sudo
   become_user: root
